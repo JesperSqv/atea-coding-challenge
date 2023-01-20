@@ -16,7 +16,15 @@ try {
     console.log('Error:', e.stack);
 }
 
+const rawDataArray = [];
 
+var arr = data.toString().split("\n");
+
+for (var i = 1; i < arr.length; i++)
+{
+    rawDataArray.push(arr[i].split(":")[1]);
+}
+console.log(rawDataArray);
 app.get("/api", (req, res) => {
     res.json({"users": ["userOne", "userTwo", "userThree"]})
     
