@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const http = require("http");
-const { getFloat } = require('./functions.js')
+const { getFloat, getLong, getInt8} = require('./functions.js')
 var fs = require('fs');
 
 const file = fs.createWriteStream("file.txt");
@@ -31,6 +31,11 @@ console.log(rawDataArray);
 console.log(rawDataArray.length);
 
 console.log(getFloat(33, rawDataArray));
+
+console.log(getLong(21, rawDataArray));
+
+console.log(getInt8(92, rawDataArray, 0));
+console.log(getInt8(92, rawDataArray, 1));
 
 app.get("/api", (req, res) => {
     res.json({"users": ["userOne", "userTwo", "userThree"]})
