@@ -38,9 +38,11 @@ console.log(getLong(21, rawDataArray));
 
 console.log(getInt8(92, rawDataArray, 0));
 console.log(getInt8(92, rawDataArray, 1));
-
+const flowRate = getFloat(1, rawDataArray);
+console.log(flowRate);
 app.get("/api", (req, res) => {
-    res.json({  "Flow Rate" : getFloat(1, rawDataArray),
+    res.json({ "flowRate": [getFloat(1, rawDataArray)] })
+    /*res.json({  "flowRate" : getFloat(1, rawDataArray),
                 "Energy Flow Rate": getFloat(3, rawDataArray),
                 "Velocity" : getFloat(5, rawDataArray),
                 "Fluid sound speed" : getFloat(7, rawDataArray),
@@ -74,7 +76,7 @@ app.get("/api", (req, res) => {
                 "Working step" : getInt8(92, rawDataArray, 0),
                 "Signal quality" : getInt8(92, rawDataArray, 1),
                 "The rate of the measured travel time by the calculated travel time" : getFloat(97, rawDataArray),
-                "Reynolds number" : getFloat(99, rawDataArray) })
+                "Reynolds number" : getFloat(99, rawDataArray) })*/
 })
 
 app.listen(5000, () => { console.log("Server started on port 5000")});
