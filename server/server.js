@@ -13,8 +13,7 @@ http.get("http://tuftuf.gambitlabs.fi/feed.txt", response => {
 });
 
 try {  
-    var data = fs.readFileSync('textfile.txt', 'utf8');
-    console.log(data.toString());    
+    var data = fs.readFileSync('textfile.txt', 'utf8');   
 } catch(e) {
     console.log('Error:', e.stack);
 }
@@ -28,18 +27,6 @@ for (var i = 1; i < arr.length; i++)
     rawDataArray.push(Number(arr[i].split(":")[1]));
 }
 
-
-console.log(rawDataArray);
-console.log(rawDataArray.length);
-
-console.log(getFloat(33, rawDataArray));
-
-console.log(getLong(21, rawDataArray));
-
-console.log(getInt8(92, rawDataArray, 0));
-console.log(getInt8(92, rawDataArray, 1));
-const flowRate = getFloat(1, rawDataArray);
-console.log(flowRate);
 app.get("/api", (req, res) => {
     res.json({ "measurements": [{"id": [1], "title": ["Flow Rate"], "data": [getFloat(1, rawDataArray)], "unit": ["m^3/h"]},
                                 {"id": [2], "title": ["Energy Flow Rate"], "data": [getFloat(3, rawDataArray)], "unit": ["GJ/h"]},
@@ -76,11 +63,6 @@ app.get("/api", (req, res) => {
                                 {"id": [33], "title": ["Signal quality"], "data": [getInt8(92, rawDataArray, 1)]},
                                 {"id": [34], "title": ["The rate of the measured travel time by the calculated travel time"], "data": [getFloat(97, rawDataArray)], "unit": ["%"]},
                                 {"id": [35], "title": ["Reynolds number"], "data": [getFloat(99, rawDataArray)]} ] })
-    /*
-                "Working step" : getInt8(92, rawDataArray, 0),
-                "Signal quality" : getInt8(92, rawDataArray, 1),
-                "The rate of the measured travel time by the calculated travel time" : getFloat(97, rawDataArray),
-                "Reynolds number" : getFloat(99, rawDataArray) })*/
 })
 
 app.listen(5000, () => { console.log("Server started on port 5000")});
