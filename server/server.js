@@ -41,7 +41,8 @@ console.log(getInt8(92, rawDataArray, 1));
 const flowRate = getFloat(1, rawDataArray);
 console.log(flowRate);
 app.get("/api", (req, res) => {
-    res.json({ "flowRate": [getFloat(1, rawDataArray)] })
+    res.json({ "measurements": [{"id": [1], "title": ["Flow Rate"], "data": [getFloat(1, rawDataArray)]},
+                                {"id": [2], "title": ["Energy Flow Rate"], "data": [getFloat(3, rawDataArray)]} ] })
     /*res.json({  "flowRate" : getFloat(1, rawDataArray),
                 "Energy Flow Rate": getFloat(3, rawDataArray),
                 "Velocity" : getFloat(5, rawDataArray),
