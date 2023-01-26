@@ -3,8 +3,13 @@ const app = express();
 const http = require("http");
 const { getFloat, getLong, getInt8} = require('./functions.js')
 var fs = require('fs');
+const path = require('path');
 const { get } = require('https');
 const { raw } = require('express');
+
+app.use(express.static(path.join(__dirname + "/public")));
+
+const PORT = process.env.PORT || 8080
 
 const file = fs.createWriteStream("file.txt");
 
@@ -65,4 +70,4 @@ app.get("/api", (req, res) => {
                                 {"id": [35], "title": ["Reynolds number"], "data": [getFloat(99, rawDataArray)]} ] })
 })
 
-app.listen(5000, () => { console.log("Server started on port 5000")});
+app.listen(PORT, () => { console.log("Server started on port 8080")});
